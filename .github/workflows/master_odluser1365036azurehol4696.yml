@@ -16,11 +16,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Clear cache
+        run: dotnet cache clean --clear-tools --local
+
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '8.0.301' # Specify your .NET version
           include-prerelease: true
+
+      - name: Install .NET SDK and Web Workloads
+        run: |
+          # Install .NET SDK
+          choco install dotnet-sdk --version=8.0.301 -y
+          # Install Visual Studio Build Tools with Web Development workload
+          choco install visualstudio2019buildtools -y --package-parameters "--add Microsoft.VisualStudio.Workload.WebBuildTools --includeRecommended --includeOptional"
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.1
