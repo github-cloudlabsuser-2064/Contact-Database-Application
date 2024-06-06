@@ -14,7 +14,7 @@ namespace CRUD_application_2.Controllers
             return View(userlist);
 
         }
-        // GET: User/Details/5
+        // GET: User/Details/3
         public ActionResult Details(int id)
         {
             var user = userlist.FirstOrDefault(u => u.Id == id);
