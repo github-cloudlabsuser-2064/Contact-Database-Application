@@ -16,9 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Clear cache
-        run: dotnet cache clean --clear-tools --local
-
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v2
         with:
