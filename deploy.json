@@ -56,6 +56,25 @@
                     ]
                 }
             ]
+        },
+        
+        {
+            "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2021-02-01",
+            "name": "myServerFarm",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "F1",
+                "tier": "Free",
+                "size": "F1",
+                "family": "F",
+                "capacity": 1
+            },
+            "properties": {
+                "name": "myServerFarm",
+                "workerSize": "0",
+                "numberOfWorkers": 1
+            }
         }
     ],
     "outputs": {}
