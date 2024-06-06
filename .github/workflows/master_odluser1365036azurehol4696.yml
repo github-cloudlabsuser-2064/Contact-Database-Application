@@ -24,10 +24,15 @@ jobs:
 
       - name: Install .NET SDK and Web Workloads
         run: |
-          # Install .NET SDK
-          choco install dotnet-sdk --version=8.0.301 -y
-          # Install Visual Studio Build Tools with Web Development workload
-          choco install visualstudio2019buildtools -y --package-parameters "--add Microsoft.VisualStudio.Workload.WebBuildTools --includeRecommended --includeOptional"
+            # Install .NET SDK
+            choco install dotnet-sdk --version=8.0.301 -y
+            # Install Visual Studio Build Tools with Web Development workload
+            choco install visualstudio2019buildtools -y --package-parameters "--add Microsoft.VisualStudio.Workload.WebBuildTools --includeRecommended --includeOptional"
+            # Ensure the WebApplication.targets is available in the expected directory
+            $webTargetsPath = "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Microsoft\VisualStudio\v17.0\WebApplications"
+            if (-Not (Test-Path $webTargetsPath)) {
+              Write-Error "WebApplication.targets was not found in the expected location."
+            }
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.1
